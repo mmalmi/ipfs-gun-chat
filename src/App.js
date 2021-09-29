@@ -40,7 +40,7 @@ class App extends Component {
     e.preventDefault();
     const el = document.getElementById('msg-input');
     if (el.value && this.gun) {
-      this.gun.get('messages').set(el.value);
+      this.gun.get('messages').get(new Date().toISOString()).put(el.value);
       el.value = '';
     }
   }
@@ -57,15 +57,20 @@ class App extends Component {
           <div id="topic-peers">
             Pubsub topic peers: 0
           </div>
-          <small>Usually takes a while to find topic peers</small>
+          <small>Sometimes takes a minute or two to find topic peers</small>
           <br/>
-          <form onSubmit={e => this.onSubmit(e)}>
-            <input id="msg-input" placeholder="Type a message" />
-            <input type="submit" value="Send" />
-          </form><br/>
-          {Object.keys(this.state.messages).map(key =>
-            <div key={key}>{this.state.messages[key]}</div>
-          ).reverse()}
+          <div className="Chat-area">
+            <form onSubmit={e => this.onSubmit(e)}>
+              <input id="msg-input" placeholder="Type a message" />
+              <input type="submit" value="Send" />
+            </form><br/>
+            {Object.keys(this.state.messages).map(key =>
+              <div key={key}>
+                <b>{new Date(key).toLocaleTimeString()} {new Date(key).toLocaleDateString()}: </b>
+                {this.state.messages[key]}
+              </div>
+            ).reverse()}
+          </div>
         </header>
       </div>
     );
