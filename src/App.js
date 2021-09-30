@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Chat over Gun & IPFS Pubsub</h1>
-          <a className="App-link" href="https://github.com/mmalmi/gun-ipfs-chat">Source</a>
+          <a className="App-link" href="https://github.com/mmalmi/ipfs-gun-chat">Source</a>
           <div id="network-peers">
             Network peers: 0
           </div>
